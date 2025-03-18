@@ -1,4 +1,4 @@
-import random  # Importa o módulo random
+import random  
 
 lista = []
 while True:
@@ -33,11 +33,11 @@ while True:
             for i, valor in enumerate(lista):
                 print(i, valor)
 
-    elif adc == 's':  # Quando o usuário escolher 's' para sortear
+    elif adc == 's':  
         if len(lista) == 0:
             print('A lista está vazia, adicione elementos primeiro!')
         else:
-            sorteado = random.choice(lista)  # Sorteia um valor aleatório da lista
+            sorteado = random.choice(lista) 
             print(f'O valor sorteado é: {sorteado}')
     else:
         print('Por favor, escolha i, a, m ou s.')
