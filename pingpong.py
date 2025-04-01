@@ -8,6 +8,7 @@ pygame.init()
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 RED = (255, 0, 0)
+BLUE = (0, 0, 255)
 
 # Configurações da janela
 WIDTH = 800
@@ -25,8 +26,8 @@ ball_radius = 10
 
 # Velocidades
 paddle_speed = 10
-ball_speed_x = 7
-ball_speed_y = 7
+ball_speed_x = 5
+ball_speed_y = 5
 
 # Criando as raquetes e a bola
 player1_y = HEIGHT // 2 - paddle_height // 2
@@ -45,8 +46,8 @@ def draw():
     screen.fill(BLACK)
 
     # Desenhando as raquetes
-    pygame.draw.rect(screen, WHITE, (10, player1_y, paddle_width, paddle_height))
-    pygame.draw.rect(screen, WHITE, (WIDTH - 10 - paddle_width, player2_y, paddle_width, paddle_height))
+    pygame.draw.rect(screen, BLUE, (10, player1_y, paddle_width, paddle_height))
+    pygame.draw.rect(screen, RED, (WIDTH - 10 - paddle_width, player2_y, paddle_width, paddle_height))
 
     # Desenhando a bola
     pygame.draw.circle(screen, WHITE, (ball_x, ball_y), ball_radius)
@@ -54,10 +55,14 @@ def draw():
     # Desenhando a linha do meio
     pygame.draw.aaline(screen, WHITE, (WIDTH // 2, 0), (WIDTH // 2, HEIGHT))
 
-    # Exibindo a pontuação
+    # Exibindo a pontuação com cores personalizadas
     font = pygame.font.Font(None, 36)
-    score_text = font.render(f"{player1_score}  -  {player2_score}", True, WHITE)
-    screen.blit(score_text, (WIDTH // 2 - score_text.get_width() // 2, 20))
+    player1_score_text = font.render(str(player1_score), True, BLUE)  # Cor azul para o jogador 1
+    player2_score_text = font.render(str(player2_score), True, RED)   # Cor vermelha para o jogador 2
+
+    # Posicionando as pontuações na tela
+    screen.blit(player1_score_text, (WIDTH // 2 - 100 - player1_score_text.get_width() // 2, 20))
+    screen.blit(player2_score_text, (WIDTH // 2 + 100 - player2_score_text.get_width() // 2, 20))
 
     pygame.display.flip()
 
