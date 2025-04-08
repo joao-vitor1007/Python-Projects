@@ -1,0 +1,43 @@
+nome_produto = input("Digite o nome do produto: ")
+quantidade_minima = int(input("Digite a quantidade mínima permitida no estoque: "))
+quantidade_maxima = int(input("Digite a quantidade máxima permitida no estoque: "))
+quantidade_atual = int(input("Digite a quantidade atual no estoque: "))
+
+print("\nEscolha uma operação:")
+print("1 - Adicionar no estoque")
+print("2 - Retirar do estoque")
+print("3 - Sair")
+
+operacao = int(input("Digite o número da operação: "))
+
+if operacao == 1:
+    quantidade_adicionar = int(input(f"Quantos itens deseja adicionar ao estoque de {nome_produto}? "))
+
+    if quantidade_atual + quantidade_adicionar > quantidade_maxima:
+        print("Operação não permitida. O estoque excederia a quantidade máxima permitida.")
+
+    elif quantidade_atual + quantidade_adicionar < quantidade_minima:
+        print("Operação inválida, a quantidade inserida é menor do que a quantidade mínima permitida")    
+
+    else:
+        quantidade_atual += quantidade_adicionar
+        print(f"Operação realizada com sucesso. Novo estoque de {nome_produto}: {quantidade_atual} itens.")
+
+elif operacao == 2:
+    quantidade_retirar = int(input(f"Quantos itens deseja retirar do estoque de {nome_produto}? "))
+    
+    if quantidade_atual - quantidade_retirar < quantidade_minima:
+        print("Operação não permitida. O estoque ficaria abaixo da quantidade mínima permitida.")
+
+    elif quantidade_atual - quantidade_retirar > quantidade_maxima:
+        print("Operação inválida. O estoque exede a quantidade máxima permitida") 
+
+    else:
+        quantidade_atual -= quantidade_retirar
+        print(f"Operação realizada com sucesso. Novo estoque de {nome_produto}: {quantidade_atual} itens.")
+
+elif operacao == 3:
+    print("Saindo do programa...")
+
+else:
+    print("Opção inválida. Por favor, escolha uma operação válida.")
